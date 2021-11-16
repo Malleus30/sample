@@ -5,13 +5,15 @@ let list = [
     {name:'sleep in the bed', status:done, priority:'low', id:2},
     {name:'drink a beer', status:toDo, priority:'high', id:3}
 ]
-function findObj(taskName) { return list.find(item => item.name===taskName)};
+function findObj(taskName) { return list.findIndex(item => item.name===taskName)};
+
 
 
 function deleteTask(taskName) {
-    list.splice(findObj(taskName),1);
-    
+   list.splice(findObj(taskName),1);
 }
+
+
 
 function addTask(taskName) {
     let maxId = list[list.length-1].id+1;
@@ -54,6 +56,7 @@ addTask('became a programmer');
 changeStatus('drink a beer', done);
 changeStatus('drink a beer', inProgress);
 changeStatus('sleep in the bed', toDo);
-showList();
+showList()
+
 
 

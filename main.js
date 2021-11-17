@@ -5,12 +5,15 @@ let list = [
     {name:'sleep in the bed', status:done, priority:'low', id:2},
     {name:'drink a beer', status:toDo, priority:'high', id:3}
 ]
-function findObj(taskName) { return list.findIndex(item => item.name===taskName)};
+
+
+function findObjName(taskName) { return list.find(item => item.name===taskName)};
+function findObjId(taskId) {return list.findIndex(item=>item.id===taskId)};
 
 
 
-function deleteTask(taskName) {
-   list.splice(findObj(taskName),1);
+function deleteTask(taskId) {
+   list.splice(findObjId(taskId),1);
 }
 
 
@@ -21,9 +24,9 @@ function addTask(taskName) {
     list.push(obj);
 }
 
-function changeStatus(taskName, newstatus) {
-    let obj = findObj(taskName);
-    obj.status = newstatus;
+function changeStatus(taskName, newStatus) {
+    let obj = findObjName(taskName);
+    obj.status = newStatus;
     if(obj.status===done) {
         obj.priority = 'low';
     }else if(obj.status===inProgress){
@@ -35,7 +38,7 @@ function loop(searchedStatus){
     let count = 0;
     list.forEach(element => {
         if(element.status===searchedStatus) {
-            console.log('   '+element.name);
+            console.log(`   name of the task: ${element.name}. Id of the task - ${element.id} `);
         count++;
         }
     });
@@ -51,12 +54,10 @@ function showList(){
     loop(done);
 }
 
+changeStatus('play a game', inProgress);
+deleteTask(3);
+addTask('cook something');
 
-addTask('became a programmer');
-changeStatus('drink a beer', done);
-changeStatus('drink a beer', inProgress);
-changeStatus('sleep in the bed', toDo);
-showList()
-
+showList();
 
 
